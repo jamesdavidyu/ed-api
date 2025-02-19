@@ -1,13 +1,12 @@
 package com.schooltecher.api.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UuidGenerator;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -30,6 +29,16 @@ public class Users {
     @CreationTimestamp
     @Column(updatable = false, nullable = false)
     private LocalDateTime createdAt;
+
+    @OneToMany(mappedBy = "techerId", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<Lessons> lessons;
+
+//    @OneToMany(mappedBy = "studentId", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<Answers> answers;
+//
+//    @OneToMany(mappedBy = "studentId", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<Grades> grades;
 
     public UUID getId() {
         return id;
@@ -71,6 +80,30 @@ public class Users {
         this.createdAt = createdAt;
     }
 
+    public List<Lessons> getLessons() {
+        return lessons;
+    }
+
+    public void setLessons(List<Lessons> lessons) {
+        this.lessons = lessons;
+    }
+
+//    public List<Answers> getAnswers() {
+//        return answers;
+//    }
+//
+//    public void setAnswers(List<Answers> answers) {
+//        this.answers = answers;
+//    }
+//
+//    public List<Grades> getGrades() {
+//        return grades;
+//    }
+//
+//    public void setGrades(List<Grades> grades) {
+//        this.grades = grades;
+//    }
+
     @Override
     public String toString() {
         return "Users{" +
@@ -79,6 +112,9 @@ public class Users {
                 ", password='" + password + '\'' +
                 ", role='" + role + '\'' +
                 ", createdAt='" + createdAt + '\'' +
+                ", lessons='" + lessons + '\'' +
+//                ", answers='" + answers + '\'' +
+//                ", grades='" + grades + '\'' +
                 '}';
     }
 }

@@ -16,12 +16,11 @@ public class ApiApplication {
 
 	@GetMapping("/")
 	public String hello() {
-		return String.format("Hello and welcome to this API written with Java's Spring Boot framework!"
-//						" Navigate by accessing the endpoints below (prefix is '/api/v1'):\n\n" +
-//				"Unauthenticated:\n" +
-//				"'/auth/register'\n" +
-//				"'/auth/login'\n\n" +
-//				"Authenticated (will need to supply access token as 'Bearer '):\n"
+		return String.format("Hello and welcome to this API written with Java's Spring Boot framework! Navigate by accessing the endpoints below (prefix is '/api/v1'):\n\n" +
+				"Unauthenticated:\n" +
+				"'/auth/register'\n" +
+				"'/auth/login'\n\n" +
+				"Authenticated (will need to supply access token as 'Bearer '):\n"
 		);
 	}
 }
