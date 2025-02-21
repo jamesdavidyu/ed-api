@@ -18,4 +18,6 @@ public class QuestionController {
     public QuestionDTO create(@RequestBody QuestionDTO request, @PathVariable UUID lessonId) {
         return questionService.create(lessonId, request.getQuestion());
     }
+
+    // TODO: get all questions for the lessonId
 }

@@ -2,7 +2,6 @@ package com.schooltecher.api.dto;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.schooltecher.api.model.Lessons;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
