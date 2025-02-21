@@ -1,5 +1,7 @@
 package com.schooltecher.api.dto;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.schooltecher.api.model.Lessons;
 
 import java.time.LocalDateTime;
@@ -11,11 +13,15 @@ public class LessonDTO {
     private LocalDateTime createdAt;
     private UUID techerId;
 
-    public LessonDTO(Lessons lesson) {
-        this.id = lesson.getId();
-        this.lesson = lesson.getLesson();
-        this.createdAt = lesson.getCreatedAt();
-        this.techerId = lesson.getTecherId() != null ? lesson.getTecherId().getId() : null;
+    @JsonCreator
+    public LessonDTO(@JsonProperty("id") UUID id,
+                     @JsonProperty("lesson") String lesson,
+                     @JsonProperty("createdAt") LocalDateTime createdAt,
+                     @JsonProperty("techerId") UUID techerId) {
+        this.id = id;
+        this.lesson = lesson;
+        this.createdAt = createdAt;
+        this.techerId = techerId;
     }
 
     public UUID getId() {

@@ -20,7 +20,13 @@ public class ApiApplication {
 				"Unauthenticated:\n" +
 				"'/auth/register'\n" +
 				"'/auth/login'\n\n" +
-				"Authenticated (will need to supply access token as 'Bearer '):\n"
+				"Authenticated (You will need to supply access token as 'Bearer '):\n" +
+				"'/auth/lessons' (You will need to save the lessonId to use with other endpoints below; the frontend will keep track of this lessonId to use with other endpoints):\n" +
+				"'/create':\n" +
+				"- The body should send { 'lesson' : '[Your lesson here]' } in the request.\n" +
+				"'/auth/questions':\n" +
+				"'/create/{[Saved lessonId here]}':\n" +
+				"- The body should send { 'question' : '[Your question here]' } in the request.\n"
 		);
 	}
 }

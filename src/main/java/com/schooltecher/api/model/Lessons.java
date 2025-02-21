@@ -1,11 +1,11 @@
 package com.schooltecher.api.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UuidGenerator;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -25,8 +25,10 @@ public class Lessons {
 
     @ManyToOne
     @JoinColumn(name = "techer_id", nullable = false)
-    @JsonBackReference
     private Users techerId;
+
+    @OneToMany(mappedBy = "lessonId", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Questions> questions;
 
     public UUID getId() {
         return id;

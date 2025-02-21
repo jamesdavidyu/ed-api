@@ -1,6 +1,5 @@
 package com.schooltecher.api.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UuidGenerator;
@@ -31,7 +30,6 @@ public class Users {
     private LocalDateTime createdAt;
 
     @OneToMany(mappedBy = "techerId", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
     private List<Lessons> lessons;
 
 //    @OneToMany(mappedBy = "studentId", cascade = CascadeType.ALL, orphanRemoval = true)

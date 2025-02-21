@@ -11,6 +11,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class LessonService {
 
@@ -26,8 +28,20 @@ public class LessonService {
             Users techer = userRepository.findByUsername(((UserDetails) authentication.getPrincipal()).getUsername());
             lesson.setTecherId(techer);
             lessonRepository.save(lesson);
-            LessonDTO lessonResponse = new LessonDTO(lesson);
+            LessonDTO lessonResponse = new LessonDTO(lesson.getId(), lesson.getLesson(), lesson.getCreatedAt(), techer.getId());
             return lessonResponse;
+        } else {
+            return null;
+        }
+    }
+
+    public List<Lessons> get() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
+            Users techer = userRepository.findByUsername(((UserDetails) authentication.getPrincipal()).getUsername());
+            List<Lessons> lessons = lessonRepository.findByTecherId(techer);
+//            LessonDTO lessonResponse = new <List>LessonDTO(lessons.getId(), lessons.getLesson(), lessons.getCreatedAt(), techer.getId());
+            return lessons;
         } else {
             return null;
         }
