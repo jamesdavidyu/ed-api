@@ -25,6 +25,7 @@ public class UserService {
 
     public Users register(Users user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        // TODO; need to write some logic for types of roles
         userRepository.save(user);
         return user;
     }

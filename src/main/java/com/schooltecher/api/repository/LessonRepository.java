@@ -11,5 +11,5 @@ import java.util.List;
 import java.util.UUID;
 
 public interface LessonRepository extends JpaRepository<Lessons, UUID> {
-    List<LessonDTO> findByTecherId(@Param("techerId") UUID techerId);
+    List<Lessons> findByTecherId(Users techerId);
 }

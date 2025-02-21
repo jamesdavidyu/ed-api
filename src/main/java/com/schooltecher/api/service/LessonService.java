@@ -11,7 +11,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class LessonService {
@@ -35,13 +37,14 @@ public class LessonService {
         }
     }
 
-    public List<Lessons> get() {
+    public List<LessonDTO> get() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
             Users techer = userRepository.findByUsername(((UserDetails) authentication.getPrincipal()).getUsername());
             List<Lessons> lessons = lessonRepository.findByTecherId(techer);
-//            LessonDTO lessonResponse = new <List>LessonDTO(lessons.getId(), lessons.getLesson(), lessons.getCreatedAt(), techer.getId());
-            return lessons;
+            return lessons.stream()
+                    .map(lesson -> new LessonDTO(lesson.getId(), lesson.getLesson(), lesson.getCreatedAt(), techer.getId()))
+                    .collect(Collectors.toList());
         } else {
             return null;
         }
