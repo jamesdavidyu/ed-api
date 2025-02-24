@@ -39,10 +39,10 @@ public class LessonService {
     public List<LessonDTO> get() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
-            Users techer = userRepository.findByUsername(((UserDetails) authentication.getPrincipal()).getUsername());
-            List<Lessons> lessons = lessonRepository.findByTecherId(techer);
+            Users techerId = userRepository.findByUsername(((UserDetails) authentication.getPrincipal()).getUsername());
+            List<Lessons> lessons = lessonRepository.findByTecherId(techerId);
             return lessons.stream()
-                    .map(lesson -> new LessonDTO(lesson.getId(), lesson.getLesson(), lesson.getCreatedAt(), techer.getId()))
+                    .map(lesson -> new LessonDTO(lesson.getId(), lesson.getLesson(), lesson.getCreatedAt(), techerId.getId()))
                     .collect(Collectors.toList());
         } else {
             return null;
