@@ -5,6 +5,7 @@ import com.schooltecher.api.service.AnswerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -17,5 +18,10 @@ public class AnswerController {
     @PostMapping("/create/{questionId}")
     public AnswerDTO create(@RequestBody AnswerDTO request, @PathVariable UUID questionId) {
         return answerService.create(questionId, request.getAnswer());
+    }
+
+    @GetMapping("/get/{questionId}")
+    public List<AnswerDTO> get(@PathVariable UUID questionId) {
+        return answerService.get(questionId);
     }
 }

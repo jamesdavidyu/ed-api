@@ -13,7 +13,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class AnswerService {
@@ -41,6 +43,20 @@ public class AnswerService {
             AnswerDTO answerResponse = new AnswerDTO(answers.getId(), answer, answers.getCreatedAt(), uuidQuestionId, studentId.getId());
             return answerResponse;
 //            TODO: need to add logic such that studentId doesn't equal techerId of who is asking question?
+        } else {
+            return null;
+        }
+    }
+
+    public List<AnswerDTO> get(UUID uuidQuestionId) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
+            Questions questionId = questionRepository.findById(uuidQuestionId)
+                    .orElseThrow(() -> new RuntimeException("Question not found"));
+            List<Answers> answers = answerRepository.findByQuestionId(questionId);
+            return answers.stream()
+                    .map(answer -> new AnswerDTO(answer.getId(), answer.getAnswer(), answer.getCreatedAt(), uuidQuestionId, answer.getStudentId().getId()))
+                    .collect(Collectors.toList());
         } else {
             return null;
         }

@@ -79,9 +79,9 @@ public class ApiApplication {
 													"<p style='text-indent:75px'>'answer' : '[Your answer here]',</p>" +
 												"<p style='text-indent:50px'>}</p>" +
 										"</pre>" +
-//										"<pre>" +
-//											"<li>'/get/{lessonId}' - Gets all questions for a particular lesson</li>" +
-//										"</pre>" +
+										"<pre>" +
+											"<li>'/get/{questionId}' - Gets all answers for a particular question</li>" +
+										"</pre>" +
 									"</ul>" +
 							"</div>" +
 						"</main>" +
