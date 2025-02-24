@@ -32,8 +32,8 @@ public class Users {
     @OneToMany(mappedBy = "techerId", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Lessons> lessons;
 
-//    @OneToMany(mappedBy = "studentId", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<Answers> answers;
+    @OneToMany(mappedBy = "studentId", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Answers> answers;
 //
 //    @OneToMany(mappedBy = "studentId", cascade = CascadeType.ALL, orphanRemoval = true)
 //    private List<Grades> grades;
@@ -86,13 +86,13 @@ public class Users {
         this.lessons = lessons;
     }
 
-//    public List<Answers> getAnswers() {
-//        return answers;
-//    }
-//
-//    public void setAnswers(List<Answers> answers) {
-//        this.answers = answers;
-//    }
+    public List<Answers> getAnswers() {
+        return answers;
+    }
+
+    public void setAnswers(List<Answers> answers) {
+        this.answers = answers;
+    }
 //
 //    public List<Grades> getGrades() {
 //        return grades;

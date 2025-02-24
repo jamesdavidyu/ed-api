@@ -1,7 +1,5 @@
 package com.schooltecher.api.model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UuidGenerator;
@@ -28,14 +26,7 @@ public class Questions {
     @JoinColumn(name = "lesson_id", nullable = false)
     private Lessons lessonId;
 
-    public Questions(UUID id, String question, LocalDateTime createdAt, Lessons lessonId) {
-        this.id = id;
-        this.question = question;
-        this.createdAt = createdAt;
-        this.lessonId = lessonId;
-    }
-
-    public Questions() {};
+    public Questions() {}
 
     public UUID getId() {
         return id;

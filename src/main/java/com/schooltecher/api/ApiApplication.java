@@ -67,8 +67,20 @@ public class ApiApplication {
 													"<p style='text-indent:75px'>'question' : '[Your question here]',</p>" +
 												"<p style='text-indent:50px'>}</p>" +
 										"</pre>" +
+										"<pre>" +
+											"<li>'/get/{lessonId}' - Gets all questions for a particular lesson</li>" +
+										"</pre>" +
+									"</ul>" +
+									"<h4>Answers (add '/answers' to the endpoint prefix) - Endpoints for users to create and get answers that students have posted to questions:</h4>" +
+									"<ul>" +
+										"<pre>" +
+											"<li>'/create/{questionId}' - Creates a new answer for a specific question and returns an answerId (please save to use with other endpoints connected to answers). Send:</li>" +
+												"<p style='text-indent:50px'>{</p>" +
+													"<p style='text-indent:75px'>'answer' : '[Your answer here]',</p>" +
+												"<p style='text-indent:50px'>}</p>" +
+										"</pre>" +
 //										"<pre>" +
-//											"<li>'/get' - Gets all lessons created by a techer</li>" +
+//											"<li>'/get/{lessonId}' - Gets all questions for a particular lesson</li>" +
 //										"</pre>" +
 									"</ul>" +
 							"</div>" +
