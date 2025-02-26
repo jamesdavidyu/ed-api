@@ -18,6 +18,8 @@ public class Questions {
     @Column(nullable = false)
     private String question;
 
+//    TODO: add expected answer column to use for grading?
+
     @CreationTimestamp
     @Column(updatable = false, nullable = false)
     private LocalDateTime createdAt;

@@ -10,4 +10,6 @@ public class Grades {
 
     @Id
     private UUID id;
+
+//    TODO: tables for different grammar parts
 }
