@@ -15,12 +15,12 @@ public class AnswerController {
     @Autowired
     private AnswerService answerService;
 
-    @PostMapping("/create/{questionId}")
+    @PostMapping("/{questionId}")
     public AnswerDTO create(@RequestBody AnswerDTO request, @PathVariable UUID questionId) {
         return answerService.create(questionId, request.getAnswer());
     }
 
-    @GetMapping("/get/{questionId}")
+    @GetMapping("/{questionId}")
     public List<AnswerDTO> get(@PathVariable UUID questionId) {
         return answerService.get(questionId);
     }

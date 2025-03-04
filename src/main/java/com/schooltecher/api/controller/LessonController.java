@@ -9,18 +9,18 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/auth/lessons")
+@RequestMapping("/api/v1/auth")
 public class LessonController {
 
     @Autowired
     private LessonService lessonService;
 
-    @PostMapping("/create")
+    @PostMapping("/lessons")
     public LessonDTO create(@RequestBody Lessons lesson) {
         return lessonService.create(lesson);
     }
 
-    @GetMapping("/get")
+    @GetMapping("/lessons")
     public List<LessonDTO> get() {
         return lessonService.get();
     }

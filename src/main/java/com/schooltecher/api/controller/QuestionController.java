@@ -15,13 +15,12 @@ public class QuestionController {
     @Autowired
     private QuestionService questionService;
 
-    @PostMapping("/create/{lessonId}")
+    @PostMapping("/{lessonId}")
     public QuestionDTO create(@RequestBody QuestionDTO request, @PathVariable UUID lessonId) {
         return questionService.create(lessonId, request.getQuestion());
     }
 
-    // TODO: get all questions for the lessonId
-    @GetMapping("/get/{lessonId}")
+    @GetMapping("/{lessonId}")
     public List<QuestionDTO> get(@PathVariable UUID lessonId) {
         return questionService.get(lessonId);
     }
